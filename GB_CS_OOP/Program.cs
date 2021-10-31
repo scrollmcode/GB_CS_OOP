@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace GB_CS_OOP
 {
@@ -9,33 +11,59 @@ namespace GB_CS_OOP
             Account a1 = new Account(AccountType.debit);
             Account a2 = new Account(AccountType.credit);
 
-            Console.WriteLine("+1000");
-            a1.ChangeBalansPlus(1000);
             Console.WriteLine(a1);
-            Console.WriteLine("-500");
-            a1.ChangeBalansMinus(500);
-            Console.WriteLine(a1);
-            Console.WriteLine("-530");
-            a1.ChangeBalansMinus(530);
-            Console.WriteLine(a1);
-            Console.WriteLine("+530");
-            a1.ChangeBalansPlus(530);
-            Console.WriteLine(a1);
+            Console.WriteLine(a2);
 
+            a1.transaction(a2, 1000);
+
+            Console.WriteLine(a1);
+            Console.WriteLine(a2);
+
+            a2.transaction(a1, 500);
+
+            Console.WriteLine(a1);
+            Console.WriteLine(a2);
+
+            // Задание 2
             Console.WriteLine();
+            string obrazec = "Какаято строка";
+            Console.WriteLine(obrazec);
+            Console.WriteLine(returnString(obrazec));
 
-            Console.WriteLine("+1000");
-            a2.ChangeBalansPlus(1000);
-            Console.WriteLine(a2);
-            Console.WriteLine("-500");
-            a2.ChangeBalansMinus(500);
-            Console.WriteLine(a2);
-            Console.WriteLine("-530");
-            a2.ChangeBalansMinus(530);
-            Console.WriteLine(a2);
-            Console.WriteLine("+530");
-            a2.ChangeBalansPlus(530);
-            Console.WriteLine(a2);
+            // Задание 3
+            List<string> namesAndEmails = new List<string>(){
+                "Кучма Андрей Витальевич & Kuchma@mail.ru",
+                "Мизинцев Павел Николаевич & Pasha@mail.ru"
+                };
+
+            foreach (string n in namesAndEmails) { Console.WriteLine(n); }
+
+            for (int i = 0; i < namesAndEmails.Count; i++)
+            {
+                string s = namesAndEmails[i];
+                findemail(ref s);
+                namesAndEmails[i] = s;
+            }
+
+            foreach (string n in namesAndEmails) { Console.WriteLine(n); }
+        }
+
+        public static string returnString(string s)
+        {
+            var strComponent = s.ToCharArray();
+            char[] tmp = new char[strComponent.Length];
+
+            for (int i = strComponent.Length; i > 0; i--)
+            {
+                tmp[i - 1] = strComponent[strComponent.Length - i];
+            }
+
+            return new string(tmp);
+        }
+
+        public static void findemail(ref string s)
+        {
+            s = s.Split('&')[1];
         }
 
         public class Account
@@ -94,6 +122,14 @@ namespace GB_CS_OOP
                 {
                     _balans = _balans - value;
                 }
+            }
+
+            public void transaction(Account account, decimal sum)
+            {
+                if (sum <= 0) return;
+
+                this.ChangeBalansPlus(sum);
+                account.ChangeBalansMinus(sum);
             }
 
             public override string ToString()
