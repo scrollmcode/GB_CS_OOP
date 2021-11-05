@@ -8,44 +8,69 @@ namespace GB_CS_OOP
     {
         static void Main(string[] args)
         {
-            Account a1 = new Account(AccountType.debit);
-            Account a2 = new Account(AccountType.credit);
+            #region 1
+            //Account a1 = new Account(AccountType.debit);
+            //Account a2 = new Account(AccountType.credit);
 
-            Console.WriteLine(a1);
-            Console.WriteLine(a2);
+            //Console.WriteLine(a1);
+            //Console.WriteLine(a2);
 
-            a1.transaction(a2, 1000);
+            //a1.transaction(a2, 1000);
 
-            Console.WriteLine(a1);
-            Console.WriteLine(a2);
+            //Console.WriteLine(a1);
+            //Console.WriteLine(a2);
 
-            a2.transaction(a1, 500);
+            //a2.transaction(a1, 500);
 
-            Console.WriteLine(a1);
-            Console.WriteLine(a2);
+            //Console.WriteLine(a1);
+            //Console.WriteLine(a2);
 
-            // Задание 2
+            //// Задание 2
+            //Console.WriteLine();
+            //string obrazec = "Какаято строка";
+            //Console.WriteLine(obrazec);
+            //Console.WriteLine(returnString(obrazec));
+
+            //// Задание 3
+            //List<string> namesAndEmails = new List<string>(){
+            //    "Кучма Андрей Витальевич & Kuchma@mail.ru",
+            //    "Мизинцев Павел Николаевич & Pasha@mail.ru"
+            //    };
+
+            //foreach (string n in namesAndEmails) { Console.WriteLine(n); }
+
+            //for (int i = 0; i < namesAndEmails.Count; i++)
+            //{
+            //    string s = namesAndEmails[i];
+            //    findemail(ref s);
+            //    namesAndEmails[i] = s;
+            //}
+
+            //foreach (string n in namesAndEmails) { Console.WriteLine(n); }
+            #endregion
+
+            Building b1 = new Building();
+            b1.SetApartmentCount(50);
+            b1.SetEntranceCount(2);
+            b1.SetFloorCount(5);
+            b1.SetHeight(20);
+
+            Console.WriteLine(b1);
+            Console.WriteLine("Количество квартир в подъезде: \t" + 
+                b1.GetApartmentCountInEntrance());
+            Console.WriteLine("Количество квартир на этаже: \t" + 
+                b1.GetApartmentCountInFloor());
+            Console.WriteLine("Высота этажа: \t" + b1.GetFloorHeight());
             Console.WriteLine();
-            string obrazec = "Какаято строка";
-            Console.WriteLine(obrazec);
-            Console.WriteLine(returnString(obrazec));
 
-            // Задание 3
-            List<string> namesAndEmails = new List<string>(){
-                "Кучма Андрей Витальевич & Kuchma@mail.ru",
-                "Мизинцев Павел Николаевич & Pasha@mail.ru"
-                };
+            Building b2 = new Building(25, 7, 50, 3);
 
-            foreach (string n in namesAndEmails) { Console.WriteLine(n); }
-
-            for (int i = 0; i < namesAndEmails.Count; i++)
-            {
-                string s = namesAndEmails[i];
-                findemail(ref s);
-                namesAndEmails[i] = s;
-            }
-
-            foreach (string n in namesAndEmails) { Console.WriteLine(n); }
+            Console.WriteLine(b2);
+            Console.WriteLine("Количество квартир в подъезде: \t" +
+                b2.GetApartmentCountInEntrance());
+            Console.WriteLine("Количество квартир на этаже: \t" +
+                b2.GetApartmentCountInFloor());
+            Console.WriteLine("Высота этажа: \t" + b2.GetFloorHeight());
         }
 
         public static string returnString(string s)
